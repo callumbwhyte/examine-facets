@@ -2,6 +2,9 @@
 
 namespace Examine.Facets.Search
 {
+    /// <summary>
+    /// Extends <see cref="IQuery"/> to support facets
+    /// </summary>
     public interface IFacetQuery : IQuery
     {
         /// <summary>
