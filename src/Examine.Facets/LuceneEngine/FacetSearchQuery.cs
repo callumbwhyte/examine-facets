@@ -8,7 +8,7 @@ namespace Examine.Facets.LuceneEngine
     /// <summary>
     /// Implements facets for <see cref="IQueryExecutor"/> with Lucene
     /// </summary>
-    public class FacetSearchQuery : LuceneSearchQuery, IFacetQuery
+    public abstract class FacetSearchQuery : LuceneSearchQuery, IFacetQuery
     {
         public FacetSearchQuery(ISearchContext searchContext, string category, Analyzer analyzer, string[] fields, LuceneSearchOptions searchOptions, BooleanOperation occurance)
             : base(searchContext, category, analyzer, fields, searchOptions, occurance)
@@ -30,8 +30,15 @@ namespace Examine.Facets.LuceneEngine
                 Values = values
             };
 
+            FacetInternal(facet);
+
             return new FacetQueryField(this, facet);
         }
+
+        /// <summary>
+        /// Register <see cref="IFacetField"/> for use within query
+        /// </summary>
+        protected abstract void FacetInternal(IFacetField field);
 
         protected override LuceneBooleanOperationBase CreateOp() => new FacetBooleanOperation(this);
     }
