@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Examine.Facets.Search
 {
-    public class FacetSearchResultsBase : ISearchResults, IFacetResults
+    public abstract class FacetSearchResultsBase : ISearchResults, IFacetResults
     {
         public FacetSearchResultsBase()
         {
@@ -28,11 +27,36 @@ namespace Examine.Facets.Search
         public long TotalItemCount { get; set; }
 
         /// <summary>
+        /// Gets the total number of documents while enumerating results
+        /// </summary>
+        protected abstract int GetTotalDocs();
+
+        /// <summary>
+        /// Gets a result at a given index while enumerating results
+        /// </summary>
+        protected abstract ISearchResult GetSearchResult(int index);
+
+        /// <summary>
         /// Skip to a particular point in the results
         /// </summary>
-        public IEnumerable<ISearchResult> Skip(int skip)
+        public virtual IEnumerable<ISearchResult> Skip(int skip)
         {
-            return Results.Values.Skip(skip);
+            for (int i = skip, x = GetTotalDocs(); i < x; i++)
+            {
+                if (Results.TryGetValue(i, out ISearchResult result) == false)
+                {
+                    result = GetSearchResult(i);
+
+                    if (result == null)
+                    {
+                        continue;
+                    }
+
+                    Results.Add(i, result);
+                }
+
+                yield return result;
+            }
         }
 
         /// <summary>
