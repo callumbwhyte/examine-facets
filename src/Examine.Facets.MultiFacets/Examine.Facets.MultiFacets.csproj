@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <Version Condition="'$(BUILD_BUILDNUMBER)' == ''">1.0.0.0</Version>
+    <Version Condition="'$(BUILD_BUILDNUMBER)' != ''">$(BUILD_BUILDNUMBER)</Version>
+    <Description>MultiFacetLucene implementation for Examine Facets</Description>
+    <Authors>Callum Whyte</Authors>
+    <Copyright>Copyright © 2020 Callum Whyte, and other contributors</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/callumbwhyte/examine-facets/main/docs/img/logo.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/callumbwhyte/examine-facets/blob/main/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/callumbwhyte/examine-facets</PackageProjectUrl>
+    <PackageTags>examine facet lucene search bobo browse</PackageTags>
+    <RepositoryUrl>https://github.com/callumbwhyte/examine-facets</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MultiFacetLucene.Net" Version="3.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Examine.Facets\Examine.Facets.csproj" />
+  </ItemGroup>
+</Project>
