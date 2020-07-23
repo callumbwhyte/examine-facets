@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examine.Facets", "Examine.F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examine.Facets.BoboBrowse", "Examine.Facets.BoboBrowse\Examine.Facets.BoboBrowse.csproj", "{54215915-F48A-4B8E-8454-75DF4AB09A6F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examine.Facets.MultiFacets", "Examine.Facets.MultiFacets\Examine.Facets.MultiFacets.csproj", "{0BAC003F-B9AE-4DD6-870B-107F7ACB7366}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{54215915-F48A-4B8E-8454-75DF4AB09A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54215915-F48A-4B8E-8454-75DF4AB09A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54215915-F48A-4B8E-8454-75DF4AB09A6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BAC003F-B9AE-4DD6-870B-107F7ACB7366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BAC003F-B9AE-4DD6-870B-107F7ACB7366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BAC003F-B9AE-4DD6-870B-107F7ACB7366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BAC003F-B9AE-4DD6-870B-107F7ACB7366}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
