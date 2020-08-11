@@ -21,9 +21,25 @@ namespace Examine.Facets.MultiFacets
         {
             using (var multiSearcher = new FacetSearcher(Searcher.IndexReader, request.Config))
             {
-                var results = multiSearcher.SearchWithFacets(request.Query, request.MaxResults, request.Facets);
+                if (request.Sort.Any() == true)
+                {
+                    var collector = TopFieldCollector.Create(
+                        new Sort(request.Sort.ToArray()), request.MaxResults, false, false, false, false);
 
-                _scoreDocs = results.Hits.ScoreDocs;
+                    multiSearcher.Search(request.Query, collector);
+
+                    _scoreDocs = collector.TopDocs().ScoreDocs;
+                }
+                else
+                {
+                    var collector = TopScoreDocCollector.Create(request.MaxResults, true);
+
+                    multiSearcher.Search(request.Query, collector);
+
+                    _scoreDocs = collector.TopDocs().ScoreDocs;
+                }
+
+                var results = multiSearcher.SearchWithFacets(request.Query, request.MaxResults, request.Facets);
 
                 foreach (var facet in results.Facets.GroupBy(x => x.FacetFieldName))
                 {

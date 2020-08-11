@@ -24,6 +24,7 @@ namespace Examine.Facets.MultiFacets
             _request = new MultiFacetRequest
             {
                 Query = Query,
+                Sort = SortFields,
                 Config = FacetSearcherConfiguration.Default(),
                 Facets = new List<FacetFieldInfo>()
             };

@@ -9,6 +9,8 @@ namespace Examine.Facets.MultiFacets
     {
         public Query Query { get; set; }
 
+        public List<SortField> Sort { get; set; }
+
         public int MaxResults { get; set; } 
 
         public FacetSearcherConfiguration Config { get; set; }
