@@ -54,6 +54,7 @@ namespace Examine.Facets.BoboBrowse
         public override ISearchResults Execute(int maxResults = 500)
         {
             _request.BrowseRequest.Count = maxResults;
+            _request.BrowseRequest.Sort = SortFields.ToArray();
 
             return new BoboFacetSearchResults(_searchContext, _request);
         }
