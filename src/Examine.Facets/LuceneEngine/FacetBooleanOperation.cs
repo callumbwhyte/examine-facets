@@ -30,5 +30,9 @@ namespace Examine.Facets.LuceneEngine
         protected override INestedQuery OrNested() => new FacetQuery(_search, Occur.SHOULD);
 
         protected override INestedQuery NotNested() => new FacetQuery(_search, Occur.MUST_NOT);
+
+        public override IOrdering OrderBy(params SortableField[] fields) => _search.OrderBy(fields);
+
+        public override IOrdering OrderByDescending(params SortableField[] fields) => _search.OrderByDescending(fields);
     }
 }
