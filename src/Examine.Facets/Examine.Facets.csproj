@@ -3,7 +3,7 @@
     <TargetFramework>net452</TargetFramework>
     <Version Condition="'$(BUILD_BUILDNUMBER)' == ''">1.0.0.0</Version>
     <Version Condition="'$(BUILD_BUILDNUMBER)' != ''">$(BUILD_BUILDNUMBER)</Version>
-    <Description>Facet search results directly within the Examine fluent API</Description>
+    <Description>Powerful filtering and faceting directly within the Examine fluent API</Description>
     <Authors>Callum Whyte</Authors>
     <Copyright>Copyright © 2020 Callum Whyte, and other contributors</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/callumbwhyte/examine-facets/main/docs/img/logo.png</PackageIconUrl>
