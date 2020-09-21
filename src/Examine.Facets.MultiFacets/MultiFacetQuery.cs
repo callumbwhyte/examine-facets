@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Examine.Facets.LuceneEngine;
-using Examine.Facets.Search;
 using Examine.LuceneEngine.Search;
 using Examine.Search;
 using Lucene.Net.Analysis;
@@ -14,48 +13,52 @@ namespace Examine.Facets.MultiFacets
     {
         private readonly ISearchContext _searchContext;
 
-        private readonly MultiFacetRequest _request;
-
         public MultiFacetQuery(ISearchContext searchContext, string category, Analyzer analyzer, string[] fields, LuceneSearchOptions searchOptions, BooleanOperation occurance)
             : base(searchContext, category, analyzer, fields, searchOptions, occurance)
         {
             _searchContext = searchContext;
-
-            _request = new MultiFacetRequest
-            {
-                Query = Query,
-                Sort = SortFields,
-                Config = FacetSearcherConfiguration.Default(),
-                Facets = new List<FacetFieldInfo>()
-            };
-        }
-
-        protected override void FacetInternal(IFacetField field)
-        {
-            if (field.MinHits > 0)
-            {
-                _request.Config.MinimumCountInTotalDatasetForFacet = field.MinHits;
-            }
-
-            var facet = new FacetFieldInfo
-            {
-                FieldName = field.Name,
-                MaxToFetchExcludingSelections = field.MaxCount
-            };
-
-            if (field.Values != null)
-            {
-                facet.Selections = field.Values.ToList();
-            }
-
-            _request.Facets.Add(facet);
         }
 
         public override ISearchResults Execute(int maxResults = 500)
         {
-            _request.MaxResults = maxResults;
+            var request = BuildRequest(maxResults);
 
-            return new MultiFacetSearchResults(_searchContext, _request);
+            return new MultiFacetSearchResults(_searchContext, request);
+        }
+
+        private MultiFacetRequest BuildRequest(int maxResults)
+        {
+            var request = new MultiFacetRequest
+            {
+                Query = Query,
+                Sort = SortFields.ToList(),
+                MaxResults = maxResults,
+                Config = FacetSearcherConfiguration.Default(),
+                Facets = new List<FacetFieldInfo>()
+            };
+
+            foreach (var field in Fields)
+            {
+                if (field.MinHits > 0)
+                {
+                    request.Config.MinimumCountInTotalDatasetForFacet = field.MinHits;
+                }
+
+                var fieldInfo = new FacetFieldInfo
+                {
+                    FieldName = field.Name,
+                    MaxToFetchExcludingSelections = field.MaxCount
+                };
+
+                if (field.Values != null)
+                {
+                    fieldInfo.Selections = field.Values.ToList();
+                }
+
+                request.Facets.Add(fieldInfo);
+            }
+
+            return request;
         }
     }
 }
