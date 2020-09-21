@@ -1,4 +1,5 @@
-﻿using Examine.Facets.Search;
+﻿using System.Collections.Generic;
+using Examine.Facets.Search;
 using Examine.LuceneEngine.Search;
 using Examine.Search;
 using Lucene.Net.Analysis;
@@ -16,29 +17,28 @@ namespace Examine.Facets.LuceneEngine
 
         }
 
-        ///<inheritdoc/>
-        public IFacetQueryField Facet(string field) => Facet(field, new string[] { });
+        public IList<IFacetField> Fields { get; } = new List<IFacetField>();
 
         ///<inheritdoc/>
-        public IFacetQueryField Facet(string field, string value) => Facet(field, new string[] { value });
+        public IFacetQueryField Facet(string field) => FacetInternal(field);
 
         ///<inheritdoc/>
-        public IFacetQueryField Facet(string field, string[] values)
-        {
-            var facet = new FacetField(field)
-            {
-                Values = values
-            };
+        public IFacetQueryField Facet(string field, string value) => FacetInternal(field, new string[] { value });
 
-            FacetInternal(facet);
-
-            return new FacetQueryField(this, facet);
-        }
+        ///<inheritdoc/>
+        public IFacetQueryField Facet(string field, string[] values) => FacetInternal(field, values);
 
         /// <summary>
         /// Register <see cref="IFacetField"/> for use within query
         /// </summary>
-        protected abstract void FacetInternal(IFacetField field);
+        protected virtual IFacetQueryField FacetInternal(string field, string[] values = null)
+        {
+            var facet = new FacetField(field, values);
+
+            Fields.Add(facet);
+
+            return new FacetQueryField(this, facet);
+        }
 
         ///<inheritdoc/>
         protected override LuceneBooleanOperationBase CreateOp() => new FacetBooleanOperation(this);
