@@ -10,7 +10,7 @@ Powerful filtering and faceting directly within the [Examine](https://github.com
 
 ## Getting started
 
-This package requires [Examine](https://github.com/shazwazza/examine) 1.0.3+.
+This package requires [Examine](https://github.com/shazwazza/examine) 1.1.0+.
 
 ### Installation
 
