@@ -16,7 +16,7 @@ namespace Examine.Facets
         ///<inheritdoc/>
         public int GetHits(object value)
         {
-            var facet = _values.FirstOrDefault(x => x.Value == value);
+            var facet = _values.FirstOrDefault(x => x.Value.Equals(value));
 
             if (facet == null)
             {
