@@ -13,27 +13,11 @@ namespace Examine.Facets
             _values = values;
         }
 
-        ///<inheritdoc/>
-        public int GetHits(object value)
-        {
-            var facet = _values.FirstOrDefault(x => x.Value == value);
+		///<inheritdoc/>
+		public int GetHits(object value) => _values.FirstOrDefault(x => Equals(x.Value, value))?.Hits ?? 0;
 
-            if (facet == null)
-            {
-                return 0;
-            }
+		public IEnumerator<IFacetValue> GetEnumerator() => _values.GetEnumerator();
 
-            return facet.Hits;
-        }
-
-        public IEnumerator<IFacetValue> GetEnumerator()
-        {
-            return _values.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-    }
+		IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+	}
 }
