@@ -29,6 +29,14 @@ namespace Examine.Facets.Search
             return this;
         }
 
+        ///<inheritdoc/>
+        public IFacetQueryField ExpandSelection(bool expandSelection = true)
+        {
+            _field.ExpandSelection = expandSelection;
+
+            return this;
+        }
+
         public IFacetQuery And() => _query;
     }
 }

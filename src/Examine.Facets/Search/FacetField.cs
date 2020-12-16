@@ -15,12 +15,13 @@ namespace Examine.Facets.Search
             Values = values;
         }
 
-        public FacetField(string name, string[] values, int minHits = 0, int maxCount = 0)
+        public FacetField(string name, string[] values, int minHits = 0, int maxCount = 0, bool expandSelection = false)
         {
             Name = name;
             Values = values;
             MinHits = minHits;
             MaxCount = maxCount;
+            ExpandSelection = expandSelection;
         }
 
         public string Name { get; }
@@ -30,5 +31,7 @@ namespace Examine.Facets.Search
         public int MinHits { get; internal set; }
 
         public int MaxCount { get; internal set; }
+
+        public bool ExpandSelection { get; internal set; }
     }
 }

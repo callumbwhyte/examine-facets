@@ -14,6 +14,11 @@ namespace Examine.Facets.Search
         /// </summary>
         IFacetQueryField MaxCount(int count);
 
+        /// <summary>
+        /// Set whether or not to expand sibling choices. Not supported in MultiFacets.
+        /// </summary>
+        IFacetQueryField ExpandSelection(bool expandSelection = true);
+
         IFacetQuery And();
     }
 }
