@@ -39,7 +39,8 @@ namespace Examine.Facets.BoboBrowse
             _request.BrowseRequest.SetFacetSpec(field.Name, new FacetSpec()
             {
                 MinHitCount = field.MinHits,
-                MaxCount = field.MaxCount
+                MaxCount = field.MaxCount,
+                ExpandSelection = field.ExpandSelection
             });
 
             if (field.Values != null)

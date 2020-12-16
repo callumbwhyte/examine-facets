@@ -8,5 +8,6 @@ namespace Examine.Facets.Search
         string[] Values { get; }
         int MinHits { get; }
         int MaxCount { get; }
+        bool ExpandSelection { get; }
     }
 }
