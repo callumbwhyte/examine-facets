@@ -10,7 +10,7 @@ Powerful filtering and faceting directly within the [Examine](https://github.com
 
 ## Getting started
 
-Examine Facets requires [Examine](https://github.com/shazwazza/examine) 1.0.3+.
+Examine Facets requires [Examine](https://github.com/shazwazza/examine) 1.1.0+.
 
 ### Installation
 
@@ -114,8 +114,12 @@ This project is maintained by [Callum Whyte](https://callumwhyte.com/) and contr
 
 [MultiFacetLucene.Net](https://github.com/aspcodenet/MultiFacetLuceneNet) was created by [Stefan Holmberg](https://github.com/aspcodenet).
 
+### A special #h5yr to our contributors
+
+* [Ronald Barendse](https://github.com/ronaldbarendse)
+
 ## License
 
-Copyright &copy; 2020 [Callum Whyte](https://callumwhyte.com/), and other contributors
+Copyright &copy; 2021 [Callum Whyte](https://callumwhyte.com/), and other contributors
 
 Licensed under the [MIT License](LICENSE.md).

@@ -5,7 +5,7 @@
     <Version Condition="'$(BUILD_BUILDNUMBER)' != ''">$(BUILD_BUILDNUMBER)</Version>
     <Description>BoboBrowse implementation for Examine Facets</Description>
     <Authors>Callum Whyte</Authors>
-    <Copyright>Copyright © 2020 Callum Whyte, and other contributors</Copyright>
+    <Copyright>Copyright © 2021 Callum Whyte, and other contributors</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/callumbwhyte/examine-facets/main/docs/img/logo.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/callumbwhyte/examine-facets/blob/main/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/callumbwhyte/examine-facets</PackageProjectUrl>
