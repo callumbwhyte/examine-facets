@@ -75,7 +75,7 @@ query.And()
 Facet searches behave the same as any other Examine search. To retreive information about facets there are some handy extension methods.
 
 ```
-var results = searcher.Execute();
+var results = query.Execute();
 ```
 
 To get a list of all facets:
